@@ -1,6 +1,6 @@
 "use client"
 
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
@@ -9,11 +9,10 @@ import confetti from "canvas-confetti";
 export default function Home() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [steps, setSteps] = useState(1)
-  const [parts, setParts] = useState(1)
 
   const openHandler = () => {
-    audioRef.current!.volume = 0.1
+    audioRef.current!.src = '/mena/bad.mp3'
+    audioRef.current!.volume = 0.5
     audioRef.current!.play();
     handleClick()
     setIsOpen(true)
@@ -51,15 +50,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen min-w-screen flex justify-center items-center bg-[url(/mena/white.jpg)]">
-      <audio ref={audioRef} loop>
-        <source src="/mena/bad.mp3"/>
-      </audio>
+      <audio ref={audioRef} loop/>
       {
         isOpen ? <div className="max-w-[30%]">
-          <Chapter1 parts={parts} setParts={setParts} setSteps={setSteps} steps={steps}/>
+          <Chapter1 />
         </div> : <div className="text-center flex flex-col items-center">
-          <p className="text-3xl">To mena, from jeppung</p>
-         
+          <p className="text-3xl">Mena Spesial Present</p>
           <button onClick={openHandler} className="cursor-pointer hover:animate-bounce  text-white bg-black rounded-full w-16 h-16 mt-5 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
@@ -71,8 +67,10 @@ export default function Home() {
   );
 }
 
-const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetStateAction<number>>, setSteps: Dispatch<SetStateAction<number>>}) => {
-  const {steps, parts, setParts, setSteps} = props
+const Chapter1 = () => {
+  const [steps, setSteps] = useState(1)
+  const [parts, setParts] = useState(1)
+  const [isFinish, setIsFinish] = useState(false)
   
   return <>
   <div>
@@ -94,15 +92,16 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
     </div>
     <div>
         <Image src={'/mena/bunga1.png'} width={500} height={500} alt="bunga" className={`absolute transition-all duration-700 ${parts === 5 ? 'bottom-0 left-0 opacity-100' : '-bottom-50 -left-50 rotate-0 opacity-0'}`}/>
-        <Image src={'/mena/bunga1.png'} width={500} height={500} alt="bunga" className={`absolute transition-all duration-700 ${parts === 5 ? 'bottom-0 right-0 opacity-100' : '-bottom-50 -right-50 rotate-0 opacity-0'}`}/>
+        <Image src={'/mena/bunga1.png'} width={500} height={500} alt="bunga" className={`absolute transition-all duration-700 rotate-y-180 ${parts === 5 ? 'bottom-0 right-0 opacity-100' : '-bottom-50 -right-50 rotate-0 opacity-0'}`}/>
     </div>
-    <div className={`absolute transition-all duration-700 top-0 left-0 w-full ${parts >= 6 ? 'opacity-30' : 'opacity-0'}`}>
+    <div className={`absolute transition-all duration-700 top-0 left-0 w-full ${parts >= 6 ?   isFinish ? 'opacity-100' : 'opacity-30' : 'opacity-0'}`}>
         <Marquee className=""> 
            <PhotoCard type="image" src='/mena/photos/photo1.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo2.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo3.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo11.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo7.jpeg'/>
+           <PhotoCard type="video" src="/mena/photos/vid2.mov" className="object-top"/>
            <PhotoCard type="image" src='/mena/photos/photo5.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo10.jpeg'/>
            <PhotoCard type="video" src="/mena/photos/tt2.mov" className="object-top"/>
@@ -114,18 +113,20 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
            <PhotoCard type="image" src='/mena/photos/photo4.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo9.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo14.jpeg'/>
-           <PhotoCard type="image" src='/mena/photos/photo2.jpeg'/>
+           <PhotoCard type="video" src="/mena/photos/tt3.mov" className="object-top"/>
            <PhotoCard type="image" src='/mena/photos/photo12.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/bakekok.jpeg'/> 
         </Marquee>  
         <Marquee className="" delay={0.5} direction="left"> 
            <PhotoCard type="image" src='/mena/photos/photo8.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo6.jpeg'/>
+           <PhotoCard type="video" src="/mena/photos/vid1.mov" className="object-top"/>
            <PhotoCard type="image" src='/mena/photos/photo4.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo9.jpeg'/>
+           <PhotoCard type="image" src='/mena/photos/photo7.jpeg'/>
+           <PhotoCard type="video" src="/mena/photos/vid3.mov" className="object-top"/>
            <PhotoCard type="image" src='/mena/photos/photo2.jpeg'/>
            <PhotoCard type="image" src='/mena/photos/photo12.jpeg'/>    
-
            <PhotoCard type="image" src='/mena/photos/photo13.jpeg'/>    
         </Marquee>  
     </div>
@@ -133,7 +134,7 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
   <div>
     {
       parts === 1 && <div className={`flex flex-col gap-2 transition-all ${parts === 1 ? 'opacity-100' : 'opacity-0'}`}>
-      <TextGenerateEffect isStart={steps === 1} onFinish={() => setSteps(2)} words={words[0]}/>
+      <TextGenerateEffect isStart={steps === 1} onFinish={() => setSteps(2)} words={words[0]} />
       <TextGenerateEffect  isStart={steps === 2} onFinish={() => {
         setSteps(3)
         setParts(2)
@@ -185,8 +186,11 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
       parts === 7 && <div className={`transition-all ${parts === 7 ? 'opacity-100' : 'opacity-0'}`}>
         <TextGenerateEffect isStart={steps === 9} onFinish={() => {
           setSteps(10)
-          setParts(8)
         }} words={words[8]}/>
+        <TextGenerateEffect isStart={steps === 10} onFinish={() => {
+          setSteps(10)
+          setParts(8)
+        }} words={words[9]}/>
       </div>
     }
     {
@@ -194,7 +198,7 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
         <TextGenerateEffect isStart={steps === 10} onFinish={() => {
           setSteps(11)
           setParts(9)
-        }} words={words[9]}/>
+        }} words={words[10]}/>
       </div>
     }
     {
@@ -202,7 +206,7 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
         <TextGenerateEffect isStart={steps === 11} onFinish={() => {
           setSteps(12)
           setParts(10)
-        }} words={words[10]}/>
+        }} words={words[11]}/>
       </div>
     }
     {
@@ -210,7 +214,7 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
         <TextGenerateEffect isStart={steps === 12} onFinish={() => {
           setSteps(13)
           setParts(11)
-        }} words={words[11]}/>
+        }} words={words[12]}/>
       </div>
     }
     {
@@ -218,7 +222,7 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
         <TextGenerateEffect isStart={steps === 13} onFinish={() => {
           setSteps(14)
           setParts(12)
-        }} words={words[12]}/>
+        }} words={words[13]}/>
       </div>
     }
     {
@@ -226,7 +230,7 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
         <TextGenerateEffect isStart={steps === 14} onFinish={() => {
           setSteps(15)
           setParts(13)
-        }} words={words[13]}/>
+        }} words={words[14]}/>
       </div>
     }
     {
@@ -234,7 +238,7 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
         <TextGenerateEffect isStart={steps === 15} onFinish={() => {
           setSteps(16)
           setParts(14)
-        }} words={words[14]}/>
+        }} words={words[15]}/>
       </div>
     }
     {
@@ -242,7 +246,7 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
         <TextGenerateEffect isStart={steps === 16} onFinish={() => {
           setSteps(17)
           setParts(15)
-        }} words={words[15]}/>
+        }} words={words[16]}/>
       </div>
     }
     {
@@ -250,12 +254,24 @@ const Chapter1 = (props: {steps: number, parts: number, setParts: Dispatch<SetSt
         <TextGenerateEffect isStart={steps === 17} onFinish={() => {
           setSteps(18)
           setParts(16)
-        }} words={words[16]}/>
+        }} words={words[17]}/>
       </div>
     }
     {
       parts === 16 && <div className={`transition-all ${parts === 16 ? 'opacity-100' : 'opacity-0'}`}>
-        <TextGenerateEffect isStart={steps === 18} onFinish={() => {}} words={words[17]}/>
+        <TextGenerateEffect isStart={steps === 18} onFinish={() => {
+          setSteps(19)
+          setParts(17)
+        }} words={words[17]}/>
+      </div>
+    }
+    {
+      parts === 17 && <div className={`transition-all ${parts === 17 ? 'opacity-100' : 'opacity-0'}`}>
+        <TextGenerateEffect isStart={steps === 19} onFinish={() => {
+          setTimeout(() => {
+            setIsFinish(true)
+          }, 1000)
+        }} words={words[18]}/>
       </div>
     }
     </div>
@@ -268,10 +284,11 @@ const words = [
   "Wave to Earth -- pasti masuk salah satu artist yang kamu suka aku percaya sih, lagunya enak enak, kali ini aku bawain baju wave to earth aku pilih size m semoga pas sama kamu kalo kegedean atau kekecilan maaf yaa",
   "Dimsum -- ga cuma sekali dua kali kalo bilang lagi ngidam ini, jadi pasti kamu suka banget apalagi dimsum mentai",
   "Roblox dan Valorant --  apa yang perlu dipertanyakan lagi kalo ini ? Hehehe, udah bagian core hidup kamu kan, aku cuma bisa isengin kamu aja kalau lagi brainrot mulu hehee, jadi sekarang aku bantu support kebahagianmu aja dengan robux sama vp, semoga kamu seneng",
-  "Bunga Matahari -- kali ini bunganya bunga fresh bukan bunga artificial, karena menurutku kureng kalo artificial, akan kerasa feelnya kalo bunga benaran, penasaran ga kenapa aku pilih bunga ini ? Aku berharap kamu bisa jadi kek bunga ini, karena kalo aku liat bunga ini rasanya heartwarming banget, semoga kamu bisa jadi orang yang heartwarming buat orang lain :)",
+  "Bunga Matahari -- kali ini bunganya bunga fresh bukan bunga artificial, karena menurutku kureng kalo artificial, akan kerasa feelnya kalo bunga benaran, penasaran ga kenapa aku pilih bunga ini ? Aku berharap kamu bisa jadi kek bunga ini, karena kalo aku liat bunga ini rasanya heartwarming banget, semoga kamu bisa jadi orang yang heartwarming buat orang disekitar kamu :)",
   "maaf kalau masih banyak kekurangan dari apa yang aku kasih, mungkin ini gabisa ngegantiin effort kamu bikin present DIY ke aku yang bagus banget dan creative, tapi semoga kamu suka",
   "ini rasa terima kasih dan gratitude dan ya sekaligus traktiran aku buat kamu buat apa yang kamu udah kasih selama ini.",
-  "Maafin aku untuk semua sakit hati trauma dan komunikasi yang aku udah buat sampai selama ini, aku engga ada maksud sedikitpun untuk nyakitin kamu, aku juga engga ada sedikitpun mikirin buat mainin perasaan kamu, maafin aku kalau fokusku dikerjaanku dan me time ku mungkin udah buat kamu merasa engga direspect buat kehadirannya, tapi percayalah men aku engga ada niat sama sekali gituin kamu",
+  "Maafin aku untuk semua sakit hati trauma dan komunikasi yang aku udah buat sampai selama ini, aku engga ada maksud sedikitpun untuk nyakitin kamu, aku juga engga ada sedikitpun mikirin buat mainin perasaan kamu",
+  "maafin aku kalau fokusku dikerjaanku dan me time ku mungkin udah buat kamu merasa engga direspect buat kehadirannya, tapi percayalah men aku engga ada niat sama sekali gituin kamu",
   "untuk semua kesalahan ku apapun itu baik aku sengaja atau gadisengaja aku minta maaf sedalam dalamnya",
   "Aku sebenarnya menunggu kamu gedean buat aku bisa seriusin dan tekanan-tekanan aku bisa pudar",
   "Entah gimana perasaan kamu sekarang, Kalo kamu tanya perasaan aku sekarang, aku engga menutup sedikitpun jalan buat kedepannya kita bisa bareng lagi, kalau dari kamu udah menutup rapat rapat perasaanmu buat aku juga gapapa karena perasaan kamu engga bisa dipaksa, aku cuma berharap kalau seandainya aku masih dikasih kesempatan sekali ini, aku mau benerin semua dari tindakanku, komunikasiku, menghargai kamu dan akan coba untuk mengerti kamu lebih lagi",
