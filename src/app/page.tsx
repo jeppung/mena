@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
@@ -239,6 +239,7 @@ const Chapter1 = () => {
           <Marquee className="">
             <PhotoCard type="image" src="/mena/photos/photo1.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo2.jpeg" />
+            <PhotoCard type="image" src="/mena/photos/photo17.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo3.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo11.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo7.jpeg" />
@@ -262,9 +263,9 @@ const Chapter1 = () => {
               src="/mena/photos/tt.mov"
               className="object-top"
             />
+            <PhotoCard type="image" src="/mena/photos/photo9.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo6.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo4.jpeg" />
-            <PhotoCard type="image" src="/mena/photos/photo9.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo14.jpeg" />
             <PhotoCard
               type="video"
@@ -275,15 +276,14 @@ const Chapter1 = () => {
             <PhotoCard type="image" src="/mena/photos/bakekok.jpeg" />
           </Marquee>
           <Marquee className="" delay={0.5} direction="left">
-            <PhotoCard type="image" src="/mena/photos/photo8.jpeg" />
+            <PhotoCard type="image" src="/mena/photos/photo9.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo6.jpeg" />
             <PhotoCard
               type="video"
               src="/mena/photos/vid1.mov"
               className="object-top"
             />
-            <PhotoCard type="image" src="/mena/photos/photo4.jpeg" />
-            <PhotoCard type="image" src="/mena/photos/photo9.jpeg" />
+            <PhotoCard type="image" src="/mena/photos/photo16.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo7.jpeg" />
             <PhotoCard
               type="video"
@@ -291,6 +291,7 @@ const Chapter1 = () => {
               className="object-top"
             />
             <PhotoCard type="image" src="/mena/photos/photo15.jpeg" />
+            <PhotoCard type="image" src="/mena/photos/photo8.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo12.jpeg" />
             <PhotoCard type="image" src="/mena/photos/photo13.jpeg" />
           </Marquee>
@@ -419,7 +420,7 @@ const Chapter1 = () => {
             <TextGenerateEffect
               isStart={steps === 10}
               onFinish={() => {
-                setSteps(10);
+                setSteps(11);
                 setParts(8);
               }}
               words={words[9]}
@@ -433,9 +434,9 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 10}
+              isStart={steps === 11}
               onFinish={() => {
-                setSteps(11);
+                setSteps(12);
                 setParts(9);
               }}
               words={words[10]}
@@ -449,9 +450,9 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 11}
+              isStart={steps === 12}
               onFinish={() => {
-                setSteps(12);
+                setSteps(13);
                 setParts(10);
               }}
               words={words[11]}
@@ -465,9 +466,9 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 12}
+              isStart={steps === 13}
               onFinish={() => {
-                setSteps(13);
+                setSteps(14);
                 setParts(11);
               }}
               words={words[12]}
@@ -481,9 +482,9 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 13}
+              isStart={steps === 14}
               onFinish={() => {
-                setSteps(14);
+                setSteps(15);
                 setParts(12);
               }}
               words={words[13]}
@@ -497,9 +498,9 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 14}
+              isStart={steps === 15}
               onFinish={() => {
-                setSteps(15);
+                setSteps(16);
                 setParts(13);
               }}
               words={words[14]}
@@ -513,9 +514,9 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 15}
+              isStart={steps === 16}
               onFinish={() => {
-                setSteps(16);
+                setSteps(17);
                 setParts(14);
               }}
               words={words[15]}
@@ -529,9 +530,9 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 16}
+              isStart={steps === 17}
               onFinish={() => {
-                setSteps(17);
+                setSteps(18);
                 setParts(15);
               }}
               words={words[16]}
@@ -545,9 +546,9 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 17}
+              isStart={steps === 18}
               onFinish={() => {
-                setSteps(18);
+                setSteps(19);
                 setParts(16);
               }}
               words={words[17]}
@@ -561,12 +562,12 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 18}
+              isStart={steps === 19}
               onFinish={() => {
-                setSteps(19);
+                setSteps(20);
                 setParts(17);
               }}
-              words={words[17]}
+              words={words[18]}
             />
           </div>
         )}
@@ -577,13 +578,11 @@ const Chapter1 = () => {
             }`}
           >
             <TextGenerateEffect
-              isStart={steps === 19}
+              isStart={steps === 20}
               onFinish={() => {
-                setTimeout(() => {
-                  setIsFinish(true);
-                }, 1000);
+                setIsFinish(true);
               }}
-              words={words[18]}
+              words={words[19]}
             />
           </div>
         )}
@@ -604,13 +603,14 @@ const words = [
   "Maafin aku untuk semua sakit hati trauma dan komunikasi yang aku udah buat sampai selama ini, aku engga ada maksud sedikitpun untuk nyakitin kamu, aku juga engga ada sedikitpun mikirin buat mainin perasaan kamu",
   "maafin aku kalau fokusku dikerjaanku dan me time ku mungkin udah buat kamu merasa engga direspect buat kehadirannya, tapi percayalah men aku engga ada niat sama sekali gituin kamu",
   "untuk semua kesalahan ku apapun itu baik aku sengaja atau gadisengaja aku minta maaf sedalam dalamnya",
-  "Aku sebenarnya menunggu kamu gedean buat aku bisa seriusin dan tekanan-tekanan aku bisa pudar",
+  "Aku sebenarnya menunggu kamu gedean dan tekanan-tekanan aku bisa pudar",
   "Entah gimana perasaan kamu sekarang, Kalo kamu tanya perasaan aku sekarang, aku engga menutup sedikitpun jalan buat kedepannya kita bisa bareng lagi, kalau dari kamu udah menutup rapat rapat perasaanmu buat aku juga gapapa karena perasaan kamu engga bisa dipaksa, aku cuma berharap kalau seandainya aku masih dikasih kesempatan sekali ini, aku mau benerin semua dari tindakanku, komunikasiku, menghargai kamu dan akan coba untuk mengerti kamu lebih lagi",
   "Aku cuma bisa berharap aja, toh kalo emang benaran jodoh pasti bakal diketemuin Tuhan juga ujung ujungnya, disisi lain jodoh gabisa ditungguin ajakan ya, jadi aku berusaha untuk mengembalikan dan menjaga hubungan ini bisa berjalan dengan baik dan benar lagi",
   "Semoga hari harimu bisa berjalan dengan baik, happy terus selalu, have fun while u are young, Semangat kedepannya apapun yang terjadi selalu percaya sama diri kamu sendiri",
   "semoga kuliahnya nanti bisa berjalan dengan baik dan lancar, jaga diri baik baik juga jangan sampai kebawa pergaulan yang engga engga nanti pas kuliah, semoga bisa mengontrol dirinya dengan baik",
   "buat masa depanmu yang kamu impiin bisa terwujud, dan kalaupun engga terwujud jangan putus asa, semangat terus karena jalan kehidupanmu udah ada Tuhan yang atur :)",
   "jangan lupa buat selalu berharap dan ngandalin Tuhan dalam segala hal, kalau kamu udah merasa terpuruk atau keadaan yang bikin kamu udah hopeless jangan pernah merasa sendiri kamu punya Tuhan yang nemenin kamu",
+  "Semua yang kusiapin ini pure dari ketulusan aku, aku engga ada minta balik sepeserpun baik dari segi materi ataupun memaksa perasaanmu",
   "Selamat menikmati gift kecil dari aku, semoga setidaknya udah bisa bikin kamu senyum :)",
 ];
 
